@@ -1,0 +1,10 @@
+{
+  "servers": [
+    {
+      "name": "my-mcp-server-1",
+      "command": "node",
+      "args": ["./dist/server.js"],
+      "type": "stdio"
+    }
+  ]
+}

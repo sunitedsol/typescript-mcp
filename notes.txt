@@ -1,0 +1,17 @@
+Getting the understanding of building an MCP using TS and nodes from this
+documentation: https://serveravatar.com/create-mcp-server-nodejs/
+github for it: https://github.com/srvrsoorg/my-mcp-server 
+
+
+Currently having an issue with the name of the mcp coming as "0". Looking reco from the LLM
+it says to:
+Full path: C:\Users\[YourUsername]\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\mcp.json
+
+{
+  "mcpServers": {
+    "my-mcp-server-1": {
+      "command": "node",
+      "args": ["[Location where file is]/server.js"]
+    }
+  }
+}
