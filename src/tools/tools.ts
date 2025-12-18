@@ -34,7 +34,6 @@ export class ToolsCollection {
       return null; // Tool not handled by this class
     }
     if (name == "calculate") {
-      console.log ("here");
       const { operation, operands } = args;
       let result: number;
       switch (operation) {
