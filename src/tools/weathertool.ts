@@ -1,5 +1,6 @@
 // a getdefinition to integrate the weatherapi.com API
-import { z } from "zod"; 
+import { z } from "zod";
+
 export class WeatherTool {
     /*private server: Server;
     constructor(server: Server) {
@@ -29,7 +30,8 @@ export class WeatherTool {
         }
         if (name === 'get-weather') {
             const { city } = args as any;
-            const apiKey = 'KEY'; // Replace with your actual WeatherAPI key
+            // const apiKey = 'KEY'; // Replace with your actual WeatherAPI key
+            const apiKey = process.env.WEATHERAPI_KEY;
             const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(city)}`;
             try {
                 const response = await fetch(apiUrl); 

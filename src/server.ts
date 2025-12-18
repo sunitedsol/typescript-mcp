@@ -4,6 +4,11 @@ import { Server} from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import * as dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
 // my import tools
 import { ToolsCollection } from './tools/tools.js';
 import {FileSystemTool} from './tools/FileSystemtool.js';
@@ -19,7 +24,7 @@ class MyMCPServer {
     this.server = new Server(
       {
         name: 'my-mcp-server',
-        version: '1.0.4',
+        version: '1.0.5',
       },
       {
         capabilities:{
