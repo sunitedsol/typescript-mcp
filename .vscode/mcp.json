@@ -1,7 +1,19 @@
 {
   "servers": [
     {
-      "name": "Example Server",
+      "name": "Typescript MCP Server - version 1.0.4",
+      "command": "node",
+      "args": [
+          "dist/server.js"
+      ],
+      "type": "stdio",},
+      {"name": "Typescript MCP Server - version 1.0.4.1",
+      "command": "node",
+      "args": [
+          "dist/server.js"
+      ],
+      "type": "stdio",},
+      {"name": "Typescript MCP Server - version 1.0.4.2",
       "command": "node",
       "args": [
           "dist/server.js"

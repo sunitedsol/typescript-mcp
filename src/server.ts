@@ -7,17 +7,19 @@ import { CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 // my import tools
 import { ToolsCollection } from './tools/tools.js';
 import {FileSystemTool} from './tools/FileSystemtool.js';
+import { WeatherTool } from './tools/weathertool.js';
 
 class MyMCPServer {
   private server: Server;
   private tools: ToolsCollection;
   private fileSystemTool: FileSystemTool;
+  private weatherTool: WeatherTool;
 
   constructor() {
     this.server = new Server(
       {
         name: 'my-mcp-server',
-        version: '1.0.3',
+        version: '1.0.4',
       },
       {
         capabilities:{
@@ -30,6 +32,7 @@ class MyMCPServer {
     // Create an instance of ToolsCollection
     this.tools = new ToolsCollection();
     this.fileSystemTool = new FileSystemTool();
+    this.weatherTool = new WeatherTool();
     
     // Register the tool handlers with the server
     //this.tools.registerTools(this.server);
@@ -42,10 +45,12 @@ class MyMCPServer {
     // Register tools from ToolsCollection
     const toolDefinitions = this.tools.getToolDefinitions();
     const fileToolDefinitions = this.fileSystemTool.getToolDefinitions();
+    const weatherToolDefinitions = this.weatherTool.getToolDefinitions();
     this.server.setRequestHandler(ListToolsRequestSchema, async (request) => {
       return {
         tools: [ ...toolDefinitions, 
-                 ...fileToolDefinitions 
+                 ...fileToolDefinitions,
+                  ...weatherToolDefinitions
                 ],
       };
     });
@@ -57,6 +62,10 @@ class MyMCPServer {
         return result;
       }
       result = await this.fileSystemTool.handleReadFileTool(name, args);
+      if(result) {
+        return result;
+      }
+      result = await this.weatherTool.handleGetWeatherTool(name, args);
       if(result) {
         return result;
       }
