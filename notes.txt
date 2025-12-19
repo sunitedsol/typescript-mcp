@@ -18,3 +18,8 @@ Full path: C:\Users\[YourUsername]\AppData\Roaming\Code\User\globalStorage\githu
 
 2025-12-28. 
 I also added the dotenv for env and variables. 
+I also added the test. Currently only for calculate. 
+
+I did not add the Security part yet:
+- sanitation (NOT STARTED)
+- authentication and authorization. (NOT STARTED)
