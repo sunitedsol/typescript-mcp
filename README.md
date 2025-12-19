@@ -1,0 +1,2 @@
+*- Instead of putting all in once place I placed the tools into separate files (the tools folder) as definitions.They are pulled into the server.js, which is the main file.
+*- Do not have API keys in your code, but in environments. In this case you will see the package.json has a dependency of the dotenv. Which then gets called in the server.js file (code: dotenv.config()), which then can be used within the tools (see how in the weather tools the API key is pulled into it).
