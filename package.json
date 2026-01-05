@@ -2,7 +2,7 @@
   "name": "typescript-mcp",
   "version": "1.0.5",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
@@ -16,6 +16,8 @@
   "description": "",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.1",
+    "@types/axios": "^0.9.36",
+    "axios": "^1.13.2",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "helmet": "^8.1.0",

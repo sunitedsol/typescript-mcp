@@ -13,12 +13,16 @@ dotenv.config();
 import { ToolsCollection } from './tools/tools.js';
 import {FileSystemTool} from './tools/FileSystemtool.js';
 import { WeatherTool } from './tools/weathertool.js';
+import { ApiClientTool } from './tools/ApiClientTool.js';
+import { PostmanCollectionTool } from './tools/PostmanCollectionTool.js';
 
 class MyMCPServer {
   private server: Server;
   private tools: ToolsCollection;
   private fileSystemTool: FileSystemTool;
   private weatherTool: WeatherTool;
+  private apiClientTool: ApiClientTool;
+  private postmanTool: PostmanCollectionTool;
 
   constructor() {
     this.server = new Server(
@@ -38,6 +42,8 @@ class MyMCPServer {
     this.tools = new ToolsCollection();
     this.fileSystemTool = new FileSystemTool();
     this.weatherTool = new WeatherTool();
+    this.apiClientTool = new ApiClientTool();
+    this.postmanTool = new PostmanCollectionTool();
     
     // Register the tool handlers with the server
     //this.tools.registerTools(this.server);
@@ -51,11 +57,15 @@ class MyMCPServer {
     const toolDefinitions = this.tools.getToolDefinitions();
     const fileToolDefinitions = this.fileSystemTool.getToolDefinitions();
     const weatherToolDefinitions = this.weatherTool.getToolDefinitions();
+    const apiToolDefinitions = this.apiClientTool.getToolDefinitions();
+    const postmanToolDefinitions = this.postmanTool.getToolDefinitions();
     this.server.setRequestHandler(ListToolsRequestSchema, async (request) => {
       return {
         tools: [ ...toolDefinitions, 
                  ...fileToolDefinitions,
-                  ...weatherToolDefinitions
+                  ...weatherToolDefinitions,
+                  ...apiToolDefinitions,
+                  ...postmanToolDefinitions
                 ],
       };
     });
@@ -71,6 +81,14 @@ class MyMCPServer {
         return result;
       }
       result = await this.weatherTool.handleGetWeatherTool(name, args);
+      if(result) {
+        return result;
+      }
+      result = await this.apiClientTool.handleApiRequest(name, args);
+      if(result) {
+        return result;
+      }
+      result = await this.postmanTool.handlePostmanTools(name, args);
       if(result) {
         return result;
       }
